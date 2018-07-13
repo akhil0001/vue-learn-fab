@@ -26,17 +26,26 @@
             return {
                 isVisible: true,
                 action_items: [
-                    {name: 'favorite'},
-                    {name:'share'},
-                    {name:'get_app'},
-                    {name: 'chat'}
+                    
                 ]
             }
         },
         methods: {
             toggleVisibility: function () {
                 this.isVisible = !this.isVisible
+            },
+            setActionItems: function (action_items_from_users) {
+                if(typeof(action_items_from_users) === 'object')
+                {
+                    if(action_items_from_users.length > 0)
+                    {
+                        action_items_from_users.forEach(action_item_json_element => {
+                            this.action_items.push(action_item_json_element.name);
+                        });
+                    }
+                }
             }
+
         }
     }
 </script>
@@ -52,7 +61,6 @@
         opacity: 0;
     }
     .action_buttons span{
-
     }
     
     .material-icons {
